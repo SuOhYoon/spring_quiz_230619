@@ -38,4 +38,16 @@ public class Lesson03Quiz02RestController {
 		int rowcount = realestateBO.addRealestate(realestate);
 		return "입력 성공 : " + rowcount;
 	}
+	
+	@RequestMapping("/lesson03/quiz03/1")
+	public String quiz03_1(@RequestParam("id")int id, @RequestParam("type") String type, @RequestParam("price") int price) {
+		int rowcount = realestateBO.updateRealestate(id, type, price);
+		return "입력 성공 : " + rowcount;
+	}
+	
+	@RequestMapping("/lesson03/quiz04/1")
+	public String quiz04_3(@RequestParam("id")int id) {
+		int rowcount = realestateBO.deleteRealestate(id);
+		return "삭제 성공 : " + rowcount;
+	}
 }	

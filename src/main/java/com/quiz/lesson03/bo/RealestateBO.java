@@ -28,4 +28,11 @@ public class RealestateBO {
 	public int addRealestate(Realestate realestate) {
 		return realestateMapper.insertRealestate(realestate);
 	}
+	
+	public int updateRealestate(int id, String type, int price) {
+		return realestateMapper.updateRealestate(id, type, price);
+	}
+	public int deleteRealestate(int id) {
+		return realestateMapper.deleteRealestate(id);
+	}
 }
