@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quiz.lesson03.mapper.RealestateMapper">
+    <select id="selectOne" parameterType="int" resultType="com.quiz.lesson03.domain.Realestate">
+        SELECT
+            *
+        FROM
+            `real_estate`
+        WHERE
+            `id` = 20
+    </select>
+    
+    <select id="selectOthers" parameterType="int" resultType="com.quiz.lesson03.domain.Realestate">
+        SELECT
+            *
+        FROM
+            `real_estate`
+        WHERE
+            #{rentPrice} >= `rentPrice`
+    </select>
+    
+    <select id="selectOther" parameterType="map" resultType="com.quiz.lesson03.domain.Realestate">
+        SELECT
+            *
+        FROM
+            `real_estate`
+        WHERE
+        	<![CDATA[
+        	`type` = '매매'
+        	AND `area` >= #{area}
+            AND `price` <= #{price}
+            ]]>
+        ORDER BY id DESC
+            
+    </select>
+    
+    <insert id="insertRealestate">
+    	insert into `real_estate`
+    	(
+			`realtorId`
+			,`address`
+			,`area`
+			,`type`
+			,`price`
+			,`rentPrice`
+			,`createdAt`
+			,`updatedAt`
+    	)
+    	values
+    	(
+    		#{realtorId}
+    		,#{address}
+    		,#{area}
+    		,#{type}
+    		,#{price}
+    		,#{rentPrice}
+    		,NOW()
+    		,NOW()
+    	)
+    </insert>
+    <update id="updateRealestate" parameterType="map">
+    	update `real_estate`
+    	set `type` = #{type},
+    		`price` = #{price}
+    	where
+    		`id` = #{id}
+    </update>
+    <delete id="deleteRealestate" parameterType="map">
+    	delete
+    	from `real_estate`
+    	where
+    		`id` = #{id}
+    </delete>
+</mapper>
